@@ -105,12 +105,12 @@ route_kpis['Average_Lead_Time'] = route_kpis['Average_Lead_Time'].round(2)
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("🏆 Top 10 Most Efficient Routes")
+    st.subheader("Top 10 Most Efficient Routes")
     fastest = route_kpis.sort_values(by='Average_Lead_Time').head(10)
     st.dataframe(fastest.style.background_gradient(cmap='Greens', subset=['Average_Lead_Time']), use_container_width=True, hide_index=True)
 
 with col2:
-    st.subheader("🚨 Top 10 Geographic Bottlenecks")
+    st.subheader("Top 10 Geographic Bottlenecks")
     avg_vol = route_kpis['Route_Volume'].mean()
     # Bottlenecks: Higher than average volume, sorted by longest lead time
     bottlenecks = route_kpis[route_kpis['Route_Volume'] > avg_vol].sort_values(by='Average_Lead_Time', ascending=False).head(10)
